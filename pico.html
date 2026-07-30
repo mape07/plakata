@@ -3,1184 +3,458 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Recibe orientación para gestionar tu Pico y Placa Solidario en Bogotá. Atención rápida por WhatsApp y acompañamiento durante el proceso." />
-  <meta name="keywords" content="pico y placa solidario Bogotá, permiso pico y placa Bogotá, asesoría pico y placa, circular en Bogotá" />
-  <meta name="theme-color" content="#0b3d2e" />
-  <title>Pico y Placa Solidario Bogotá | Asesoría Rápida</title>
+  <meta name="theme-color" content="#087443" />
+  <meta name="description" content="Servicio privado e independiente de orientación sobre movilidad y Pico y Placa en Bogotá. Consulta tu placa, planifica tus recorridos y evita inconvenientes." />
+  <meta name="keywords" content="pico y placa Bogotá, asesoría movilidad Bogotá, consulta placa Bogotá, restricción vehicular Bogotá, movilidad Bogotá" />
+  <meta name="robots" content="index, follow" />
+  <title>Movilidad Clara Bogotá | Orientación sobre Pico y Placa</title>
 
   <style>
-    :root {
-      --green-dark: #0b3d2e;
-      --green: #168a52;
-      --green-bright: #22c55e;
-      --green-soft: #eaf8ef;
-      --white: #ffffff;
-      --light: #f7faf8;
-      --text: #17352a;
-      --muted: #64756d;
-      --border: #dcebe2;
-      --shadow: 0 18px 50px rgba(11, 61, 46, 0.12);
-      --radius: 22px;
+    :root{
+      --green:#0ba360;
+      --green-2:#18c77a;
+      --dark:#07583a;
+      --ink:#10231b;
+      --muted:#64736c;
+      --soft:#effaf5;
+      --line:#dceae3;
+      --white:#fff;
+      --shadow:0 20px 60px rgba(5, 88, 58, .14);
+      --radius:24px;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color:var(--ink);
+      background:#fff;
+      overflow-x:hidden;
+      line-height:1.6;
+    }
+    a{text-decoration:none;color:inherit}
+    button,input{font:inherit}
+    img{max-width:100%;display:block}
+
+    .container{width:min(1180px, calc(100% - 32px));margin:auto}
+    .section{padding:96px 0}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:8px 13px;border-radius:999px;
+      background:var(--soft);color:var(--dark);
+      font-weight:800;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;
+    }
+    .section-title{font-size:clamp(2rem,4vw,3.7rem);line-height:1.04;letter-spacing:-.045em;margin:18px 0}
+    .section-copy{color:var(--muted);font-size:1.05rem;max-width:720px}
+    .gradient-text{
+      background:linear-gradient(120deg,var(--dark),var(--green-2));
+      -webkit-background-clip:text;background-clip:text;color:transparent;
     }
 
-    html {
-      scroll-behavior: smooth;
+    /* Loader */
+    #loader{
+      position:fixed;inset:0;background:#fff;z-index:9999;
+      display:grid;place-items:center;transition:.6s ease;
     }
-
-    body {
-      font-family: Inter, Arial, Helvetica, sans-serif;
-      color: var(--text);
-      background: var(--white);
-      line-height: 1.6;
-      overflow-x: hidden;
+    #loader.hide{opacity:0;visibility:hidden}
+    .loader-mark{
+      width:72px;height:72px;border-radius:24px;
+      background:linear-gradient(145deg,var(--dark),var(--green-2));
+      display:grid;place-items:center;color:#fff;font-size:32px;
+      box-shadow:var(--shadow);animation:pulse 1.2s infinite;
     }
+    @keyframes pulse{50%{transform:scale(1.08);filter:brightness(1.1)}}
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button,
-    input,
-    select,
-    textarea {
-      font: inherit;
-    }
-
-    .container {
-      width: min(1160px, calc(100% - 32px));
-      margin-inline: auto;
-    }
-
-    .topbar {
-      background: var(--green-dark);
-      color: #fff;
-      padding: 9px 0;
-      font-size: 0.9rem;
-      text-align: center;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(255,255,255,.94);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(11, 61, 46, .08);
-    }
-
-    nav {
-      min-height: 76px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 900;
-      color: var(--green-dark);
-      letter-spacing: -0.5px;
-    }
-
-    .brand-mark {
-      width: 44px;
-      height: 44px;
-      border-radius: 14px;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, var(--green), var(--green-bright));
-      color: white;
-      box-shadow: 0 10px 25px rgba(34, 197, 94, .28);
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 26px;
-      font-weight: 700;
-      color: #355c4d;
-      font-size: .95rem;
-    }
-
-    .nav-links a:hover {
-      color: var(--green);
-    }
-
-    .btn {
-      border: 0;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 14px 22px;
-      border-radius: 999px;
-      font-weight: 800;
-      transition: .25s ease;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--green), var(--green-bright));
-      color: #fff;
-      box-shadow: 0 12px 30px rgba(22, 138, 82, .28);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 18px 35px rgba(22, 138, 82, .35);
-    }
-
-    .btn-secondary {
-      color: var(--green-dark);
-      background: var(--white);
-      border: 1px solid var(--border);
-    }
-
-    .btn-secondary:hover {
-      transform: translateY(-2px);
-      border-color: var(--green-bright);
-    }
-
-    .hero {
-      position: relative;
-      padding: 92px 0 72px;
+    /* Background */
+    .bg-grid{
+      position:absolute;inset:0;pointer-events:none;overflow:hidden;
       background:
-        radial-gradient(circle at 85% 20%, rgba(34,197,94,.18), transparent 25%),
-        radial-gradient(circle at 10% 90%, rgba(22,138,82,.12), transparent 28%),
-        linear-gradient(180deg, #ffffff 0%, #f4fbf6 100%);
-      overflow: hidden;
-    }
-
-    .hero::before,
-    .hero::after {
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(8px);
-      opacity: .55;
-      animation: float 6s ease-in-out infinite;
-    }
-
-    .hero::before {
-      width: 160px;
-      height: 160px;
-      background: rgba(34,197,94,.14);
-      right: 8%;
-      top: 15%;
-    }
-
-    .hero::after {
-      width: 110px;
-      height: 110px;
-      background: rgba(11,61,46,.1);
-      left: 4%;
-      bottom: 8%;
-      animation-delay: -2s;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-18px); }
-    }
-
-    .hero-grid {
-      position: relative;
-      z-index: 2;
-      display: grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 60px;
-      align-items: center;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      background: var(--green-soft);
-      color: var(--green-dark);
-      border: 1px solid #ccebd8;
-      padding: 8px 13px;
-      border-radius: 999px;
-      font-weight: 800;
-      font-size: .88rem;
-      margin-bottom: 22px;
-    }
-
-    h1 {
-      font-size: clamp(2.6rem, 6vw, 5rem);
-      line-height: 1.03;
-      letter-spacing: -2.4px;
-      color: var(--green-dark);
-      margin-bottom: 22px;
-    }
-
-    h1 span {
-      color: var(--green);
-    }
-
-    .hero-copy {
-      max-width: 650px;
-      font-size: 1.12rem;
-      color: var(--muted);
-      margin-bottom: 30px;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-bottom: 28px;
-    }
-
-    .trust-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px;
-      color: #3f6255;
-      font-weight: 700;
-      font-size: .92rem;
-    }
-
-    .trust-row span {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-    }
-
-    .hero-card {
-      background: rgba(255,255,255,.9);
-      border: 1px solid rgba(11,61,46,.1);
-      border-radius: 30px;
-      box-shadow: var(--shadow);
-      padding: 28px;
-      position: relative;
-    }
-
-    .car-visual {
-      min-height: 390px;
-      display: grid;
-      place-items: center;
-      border-radius: 24px;
-      background:
-        linear-gradient(145deg, rgba(34,197,94,.13), rgba(11,61,46,.05)),
-        #fff;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .city {
-      position: absolute;
-      inset: auto 0 0;
-      display: flex;
-      align-items: end;
-      justify-content: center;
-      gap: 8px;
-      opacity: .18;
-    }
-
-    .building {
-      width: 36px;
-      background: var(--green-dark);
-      border-radius: 6px 6px 0 0;
-    }
-
-    .b1 { height: 85px; }
-    .b2 { height: 130px; }
-    .b3 { height: 105px; }
-    .b4 { height: 155px; }
-    .b5 { height: 95px; }
-    .b6 { height: 120px; }
-
-    .car {
-      width: 260px;
-      height: 108px;
-      background: linear-gradient(135deg, var(--green-dark), var(--green));
-      border-radius: 58px 75px 26px 26px;
-      position: relative;
-      box-shadow: 0 25px 50px rgba(11,61,46,.28);
-      z-index: 2;
-    }
-
-    .car::before {
-      content: "";
-      position: absolute;
-      width: 145px;
-      height: 72px;
-      left: 56px;
-      top: -42px;
-      border-radius: 70px 70px 0 0;
-      background: linear-gradient(135deg, #dff8e8, #9fe1b7);
-      border: 12px solid var(--green-dark);
-      border-bottom: 0;
-    }
-
-    .wheel {
-      width: 48px;
-      height: 48px;
-      background: #15231d;
-      border: 8px solid #dce6df;
-      border-radius: 50%;
-      position: absolute;
-      bottom: -22px;
-    }
-
-    .wheel.left { left: 42px; }
-    .wheel.right { right: 42px; }
-
-    .check-badge {
-      position: absolute;
-      width: 86px;
-      height: 86px;
-      border-radius: 26px;
-      right: 20px;
-      top: 20px;
-      display: grid;
-      place-items: center;
-      color: white;
-      font-size: 2rem;
-      background: linear-gradient(135deg, var(--green), var(--green-bright));
-      box-shadow: 0 15px 35px rgba(34,197,94,.35);
-      transform: rotate(6deg);
-    }
-
-    .mini-note {
-      position: absolute;
-      left: 20px;
-      bottom: 20px;
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 13px 16px;
-      box-shadow: 0 10px 30px rgba(11,61,46,.1);
-      font-weight: 800;
-      color: var(--green-dark);
-      z-index: 3;
-    }
-
-    section {
-      padding: 84px 0;
-    }
-
-    .section-head {
-      text-align: center;
-      max-width: 750px;
-      margin: 0 auto 48px;
-    }
-
-    .section-head span {
-      color: var(--green);
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      font-size: .82rem;
-    }
-
-    .section-head h2 {
-      font-size: clamp(2rem, 4vw, 3.25rem);
-      line-height: 1.12;
-      letter-spacing: -1.4px;
-      color: var(--green-dark);
-      margin: 10px 0 14px;
-    }
-
-    .section-head p {
-      color: var(--muted);
-      font-size: 1.04rem;
-    }
-
-    .benefit-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-    }
-
-    .card {
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 28px;
-      transition: .25s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-7px);
-      box-shadow: var(--shadow);
-      border-color: #bfe3cc;
-    }
-
-    .icon {
-      width: 54px;
-      height: 54px;
-      display: grid;
-      place-items: center;
-      border-radius: 16px;
-      background: var(--green-soft);
-      color: var(--green);
-      font-size: 1.5rem;
-      margin-bottom: 20px;
-    }
-
-    .card h3 {
-      color: var(--green-dark);
-      font-size: 1.12rem;
-      margin-bottom: 8px;
-    }
-
-    .card p {
-      color: var(--muted);
-      font-size: .95rem;
-    }
-
-    .steps-section {
-      background: var(--light);
-    }
-
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-
-    .step {
-      position: relative;
-      background: #fff;
-      border-radius: var(--radius);
-      padding: 30px;
-      border: 1px solid var(--border);
-    }
-
-    .step-number {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: var(--green-dark);
-      color: #fff;
-      display: grid;
-      place-items: center;
-      font-weight: 900;
-      margin-bottom: 20px;
-    }
-
-    .step h3 {
-      margin-bottom: 8px;
-      color: var(--green-dark);
-    }
-
-    .step p {
-      color: var(--muted);
-    }
-
-    .info-grid {
-      display: grid;
-      grid-template-columns: .9fr 1.1fr;
-      gap: 54px;
-      align-items: center;
-    }
-
-    .info-panel {
-      background: linear-gradient(145deg, var(--green-dark), #126441);
-      color: white;
-      border-radius: 30px;
-      padding: 38px;
-      min-height: 420px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .info-panel::after {
-      content: "";
-      position: absolute;
-      width: 230px;
-      height: 230px;
-      border-radius: 50%;
-      background: rgba(255,255,255,.08);
-      right: -70px;
-      bottom: -90px;
-    }
-
-    .info-panel h3 {
-      font-size: 2rem;
-      line-height: 1.15;
-      margin-bottom: 16px;
-    }
-
-    .info-panel p {
-      color: rgba(255,255,255,.8);
-      margin-bottom: 24px;
-    }
-
-    .check-list {
-      display: grid;
-      gap: 14px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .check-list li {
-      list-style: none;
-      display: flex;
-      gap: 11px;
-      align-items: flex-start;
-      font-weight: 700;
-    }
-
-    .check-list li::before {
-      content: "✓";
-      flex: 0 0 25px;
-      height: 25px;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
-      color: var(--green-dark);
-      background: #a7f3c3;
-      font-size: .8rem;
-      margin-top: 1px;
-    }
-
-    .content-block h2 {
-      color: var(--green-dark);
-      font-size: clamp(2rem, 4vw, 3rem);
-      line-height: 1.13;
-      letter-spacing: -1.2px;
-      margin-bottom: 18px;
-    }
-
-    .content-block p {
-      color: var(--muted);
-      margin-bottom: 18px;
-    }
-
-    .content-block .notice {
-      border-left: 4px solid var(--green-bright);
-      background: var(--green-soft);
-      padding: 16px 18px;
-      border-radius: 0 14px 14px 0;
-      color: #315c49;
-      font-size: .94rem;
-    }
-
-    .cta {
-      padding: 70px 0;
-    }
-
-    .cta-box {
-      background: linear-gradient(135deg, var(--green-dark), var(--green));
-      border-radius: 30px;
-      padding: 54px;
-      color: white;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 30px;
-      box-shadow: var(--shadow);
-    }
-
-    .cta-box h2 {
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      line-height: 1.1;
-      margin-bottom: 12px;
-    }
-
-    .cta-box p {
-      color: rgba(255,255,255,.8);
-      max-width: 690px;
-    }
-
-    .faq {
-      background: var(--light);
-    }
-
-    .faq-list {
-      max-width: 850px;
-      margin: auto;
-      display: grid;
-      gap: 14px;
-    }
-
-    details {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 20px 22px;
-    }
-
-    summary {
-      cursor: pointer;
-      font-weight: 850;
-      color: var(--green-dark);
-      list-style: none;
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    summary::after {
-      content: "+";
-      color: var(--green);
-      font-size: 1.4rem;
-    }
-
-    details[open] summary::after {
-      content: "–";
-    }
-
-    details p {
-      color: var(--muted);
-      padding-top: 12px;
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: .85fr 1.15fr;
-      gap: 38px;
-      align-items: stretch;
-    }
-
-    .contact-copy {
-      background: var(--green-soft);
-      border-radius: 28px;
-      padding: 38px;
-      border: 1px solid #cfe9d8;
-    }
-
-    .contact-copy h2 {
-      font-size: 2.4rem;
-      line-height: 1.12;
-      color: var(--green-dark);
-      margin-bottom: 14px;
-    }
-
-    .contact-copy p {
-      color: var(--muted);
-      margin-bottom: 24px;
-    }
-
-    .contact-detail {
-      margin-top: 14px;
-      font-weight: 800;
-      color: var(--green-dark);
-    }
-
-    form {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 28px;
-      padding: 34px;
-      box-shadow: var(--shadow);
-    }
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-
-    .field {
-      display: grid;
-      gap: 7px;
-    }
-
-    .field.full {
-      grid-column: 1 / -1;
-    }
-
-    label {
-      font-size: .9rem;
-      font-weight: 800;
-      color: #315747;
-    }
-
-    input,
-    select,
-    textarea {
-      width: 100%;
-      padding: 14px 15px;
-      border: 1px solid #cfdfd6;
-      border-radius: 13px;
-      outline: none;
-      color: var(--text);
-      background: #fbfdfc;
-      transition: .2s ease;
-    }
-
-    input:focus,
-    select:focus,
-    textarea:focus {
-      border-color: var(--green);
-      box-shadow: 0 0 0 4px rgba(22,138,82,.1);
-    }
-
-    textarea {
-      min-height: 105px;
-      resize: vertical;
-    }
-
-    .form-note {
-      color: var(--muted);
-      font-size: .78rem;
-      margin: 13px 0 16px;
-    }
-
-    footer {
-      background: #082f24;
-      color: white;
-      padding: 48px 0 24px;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1.3fr 1fr 1fr;
-      gap: 34px;
-      padding-bottom: 34px;
-      border-bottom: 1px solid rgba(255,255,255,.12);
-    }
-
-    footer p,
-    footer a {
-      color: rgba(255,255,255,.72);
-    }
-
-    footer h4 {
-      margin-bottom: 12px;
-    }
-
-    .footer-links {
-      display: grid;
-      gap: 8px;
-    }
-
-    .legal {
-      padding-top: 22px;
-      color: rgba(255,255,255,.55);
-      font-size: .82rem;
-      text-align: center;
-    }
-
-    .whatsapp-float {
-      position: fixed;
-      right: 22px;
-      bottom: 22px;
-      width: 62px;
-      height: 62px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      background: #25d366;
-      color: white;
-      font-size: 1.7rem;
-      box-shadow: 0 15px 35px rgba(37,211,102,.38);
-      z-index: 1200;
-      transition: .25s ease;
-    }
-
-    .whatsapp-float:hover {
-      transform: scale(1.07);
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: .65s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @media (max-width: 960px) {
-      .nav-links {
-        display: none;
+        linear-gradient(rgba(11,163,96,.045) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(11,163,96,.045) 1px,transparent 1px);
+      background-size:44px 44px;
+      mask-image:linear-gradient(to bottom,#000 55%,transparent);
+    }
+    .orb{position:absolute;border-radius:50%;filter:blur(10px);opacity:.28;animation:float 8s ease-in-out infinite}
+    .orb.one{width:320px;height:320px;background:#91f2c2;top:80px;right:-110px}
+    .orb.two{width:230px;height:230px;background:#c4ffe0;bottom:80px;left:-90px;animation-delay:-3s}
+    @keyframes float{50%{transform:translateY(-28px) translateX(18px)}}
+
+    /* Navbar */
+    .nav-wrap{
+      position:fixed;top:0;left:0;right:0;z-index:1000;
+      padding:14px 0;transition:.3s;
+    }
+    .nav-wrap.scrolled{
+      background:rgba(255,255,255,.86);backdrop-filter:blur(18px);
+      box-shadow:0 8px 30px rgba(10,68,46,.08);
+    }
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:-.03em}
+    .brand-icon{
+      width:42px;height:42px;border-radius:14px;display:grid;place-items:center;
+      color:#fff;background:linear-gradient(145deg,var(--dark),var(--green-2));
+      box-shadow:0 10px 25px rgba(11,163,96,.24);
+    }
+    .brand small{display:block;color:var(--muted);font-weight:650;font-size:.67rem;letter-spacing:.08em;text-transform:uppercase}
+    .nav-links{display:flex;gap:26px;align-items:center;font-size:.93rem;font-weight:700}
+    .nav-links a{transition:.25s}.nav-links a:hover{color:var(--green)}
+    .menu-btn{display:none;border:0;background:var(--soft);width:44px;height:44px;border-radius:14px;font-size:22px}
+
+    /* Buttons */
+    .btn{
+      border:0;border-radius:15px;padding:14px 20px;font-weight:850;
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      cursor:pointer;transition:.28s;position:relative;overflow:hidden;
+    }
+    .btn-primary{background:linear-gradient(135deg,var(--dark),var(--green));color:#fff;box-shadow:0 14px 30px rgba(11,163,96,.24)}
+    .btn-primary:hover{transform:translateY(-3px);box-shadow:0 18px 38px rgba(11,163,96,.3)}
+    .btn-light{background:#fff;color:var(--dark);border:1px solid var(--line)}
+    .btn-light:hover{transform:translateY(-3px);border-color:#9dd9ba}
+    .ripple{position:absolute;border-radius:50%;transform:scale(0);animation:ripple .55s linear;background:rgba(255,255,255,.5)}
+    @keyframes ripple{to{transform:scale(4);opacity:0}}
+
+    /* Hero */
+    .hero{
+      min-height:100vh;display:grid;align-items:center;position:relative;
+      padding:130px 0 72px;background:linear-gradient(180deg,#fbfffd 0%,#fff 100%);
+    }
+    .hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:54px;align-items:center;position:relative;z-index:2}
+    .hero h1{font-size:clamp(3.15rem,7vw,6.1rem);line-height:.93;letter-spacing:-.065em;margin:22px 0}
+    .hero p{font-size:1.13rem;color:var(--muted);max-width:660px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin:30px 0}
+    .trust-row{display:flex;gap:22px;flex-wrap:wrap;color:var(--muted);font-weight:700;font-size:.88rem}
+    .trust-row span{display:flex;align-items:center;gap:7px}
+    .check{color:var(--green)}
+
+    .consult-card{
+      position:relative;background:rgba(255,255,255,.88);backdrop-filter:blur(18px);
+      border:1px solid rgba(185,224,204,.8);padding:28px;border-radius:30px;
+      box-shadow:var(--shadow);transform:perspective(900px) rotateY(-3deg);
+    }
+    .consult-card:before{
+      content:"";position:absolute;inset:-1px;border-radius:30px;padding:1px;
+      background:linear-gradient(135deg,rgba(11,163,96,.5),transparent 45%);
+      -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+      -webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;
+    }
+    .live-pill{
+      display:inline-flex;gap:8px;align-items:center;font-weight:800;font-size:.8rem;
+      color:var(--dark);background:var(--soft);padding:8px 12px;border-radius:999px;
+    }
+    .live-dot{width:8px;height:8px;background:var(--green);border-radius:50%;box-shadow:0 0 0 6px rgba(11,163,96,.12)}
+    .consult-card h2{font-size:1.7rem;line-height:1.1;margin:20px 0 8px}
+    .field{margin-top:18px}
+    .field label{display:block;font-weight:800;font-size:.88rem;margin-bottom:8px}
+    .plate-input{
+      display:flex;align-items:center;background:#f7fbf9;border:1px solid var(--line);
+      border-radius:17px;padding:8px;transition:.25s;
+    }
+    .plate-input:focus-within{border-color:var(--green);box-shadow:0 0 0 4px rgba(11,163,96,.1)}
+    .plate-input input{border:0;outline:0;background:transparent;width:100%;padding:10px 12px;text-transform:uppercase;font-weight:900;letter-spacing:.12em;font-size:1.25rem}
+    .result{
+      display:none;margin-top:18px;padding:16px;border-radius:16px;
+      background:var(--soft);border:1px solid #cbead9;font-weight:750;
+    }
+    .result.show{display:block;animation:fadeUp .4s ease}
+    .official-note{
+      margin-top:16px;padding:13px;border-radius:14px;background:#fff9e9;
+      border:1px solid #f2dfaa;color:#765d17;font-size:.78rem;
+    }
+
+    /* Legal strip */
+    .legal-strip{background:#08291d;color:#d9f7e8;padding:15px 0;font-size:.84rem}
+    .legal-strip .container{display:flex;justify-content:center;align-items:center;gap:10px;text-align:center}
+
+    /* Cards */
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:46px}
+    .card{
+      padding:26px;border:1px solid var(--line);border-radius:var(--radius);
+      background:#fff;transition:.35s;box-shadow:0 8px 24px rgba(9,82,54,.05);
+    }
+    .card:hover{transform:translateY(-8px);box-shadow:var(--shadow);border-color:#b8dfca}
+    .card-icon{
+      width:52px;height:52px;border-radius:17px;display:grid;place-items:center;
+      background:var(--soft);font-size:24px;margin-bottom:20px;
+    }
+    .card h3{font-size:1.15rem;margin-bottom:8px}.card p{color:var(--muted)}
+
+    /* Schedule */
+    .schedule-section{background:linear-gradient(180deg,#f5fcf8,#fff)}
+    .schedule-wrap{display:grid;grid-template-columns:.86fr 1.14fr;gap:34px;align-items:start;margin-top:42px}
+    .rule-box{
+      background:linear-gradient(145deg,#083d2b,#0b7a4c);color:#fff;padding:32px;
+      border-radius:30px;box-shadow:var(--shadow);position:sticky;top:105px;
+    }
+    .rule-box h3{font-size:1.7rem;line-height:1.1;margin-bottom:14px}
+    .rule-box p{color:#d8f5e6}
+    .rule-item{display:flex;gap:14px;padding:17px 0;border-bottom:1px solid rgba(255,255,255,.13)}
+    .rule-item:last-child{border-bottom:0}
+    .rule-num{min-width:40px;height:40px;border-radius:13px;background:rgba(255,255,255,.14);display:grid;place-items:center;font-weight:900}
+    .week{display:grid;gap:12px}
+    .day{
+      display:grid;grid-template-columns:120px 1fr auto;align-items:center;gap:18px;
+      padding:18px 20px;background:#fff;border:1px solid var(--line);border-radius:19px;
+      transition:.25s;
+    }
+    .day:hover{transform:translateX(5px);border-color:#b4dec7}
+    .day-name{font-weight:900}
+    .plate-chips{display:flex;gap:7px;flex-wrap:wrap}
+    .chip{width:31px;height:31px;border-radius:10px;display:grid;place-items:center;background:var(--soft);color:var(--dark);font-weight:900;font-size:.82rem}
+    .day small{color:var(--muted);font-weight:700;text-align:right}
+    .today{border:2px solid var(--green);box-shadow:0 12px 25px rgba(11,163,96,.1)}
+    .today .day-name:after{content:"Hoy";margin-left:8px;background:var(--green);color:#fff;padding:3px 7px;border-radius:999px;font-size:.62rem;vertical-align:middle}
+
+    /* Process */
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px}
+    .step{padding:28px;border-radius:24px;background:var(--soft);position:relative;overflow:hidden}
+    .step span{font-size:4.3rem;font-weight:950;color:rgba(11,163,96,.1);position:absolute;right:14px;top:-12px}
+    .step h3{font-size:1.2rem;margin:14px 0 7px}.step p{color:var(--muted)}
+
+    /* FAQ */
+    .faq-wrap{max-width:860px;margin:42px auto 0}
+    details{border-bottom:1px solid var(--line);padding:20px 4px}
+    summary{list-style:none;cursor:pointer;font-weight:850;font-size:1.05rem;display:flex;justify-content:space-between;gap:20px}
+    summary::-webkit-details-marker{display:none}
+    summary:after{content:"+";font-size:1.5rem;color:var(--green)}
+    details[open] summary:after{content:"−"}
+    details p{color:var(--muted);padding:13px 28px 2px 0}
+
+    /* CTA */
+    .cta{
+      border-radius:34px;padding:55px;color:#fff;overflow:hidden;position:relative;
+      background:radial-gradient(circle at 90% 10%,#27d88a 0,transparent 28%),linear-gradient(135deg,#052d20,#0ba360);
+      box-shadow:var(--shadow);
+    }
+    .cta h2{font-size:clamp(2.2rem,5vw,4.2rem);line-height:1;letter-spacing:-.05em;max-width:760px}
+    .cta p{color:#dcf8e9;max-width:650px;margin:17px 0 27px}
+    .cta .btn{background:#fff;color:var(--dark)}
+
+    /* Footer */
+    footer{padding:62px 0 28px;background:#071f17;color:#d4e9df;margin-top:96px}
+    .footer-grid{display:grid;grid-template-columns:1.3fr .7fr .7fr;gap:40px}
+    footer h4{color:#fff;margin-bottom:13px}
+    footer p,footer a{color:#9fc1b1;font-size:.9rem}
+    footer a{display:block;margin:8px 0}
+    footer a:hover{color:#fff}
+    .copyright{border-top:1px solid rgba(255,255,255,.1);margin-top:38px;padding-top:22px;color:#80a493;font-size:.8rem}
+
+    .whatsapp{
+      position:fixed;right:22px;bottom:22px;z-index:900;width:60px;height:60px;
+      display:grid;place-items:center;border-radius:50%;background:#25d366;color:#fff;
+      font-size:27px;box-shadow:0 14px 35px rgba(37,211,102,.35);
+      animation:waPulse 2s infinite;
+    }
+    @keyframes waPulse{50%{box-shadow:0 14px 35px rgba(37,211,102,.35),0 0 0 12px rgba(37,211,102,.08)}}
+    .reveal{opacity:0;transform:translateY(28px);transition:.7s ease}
+    .reveal.visible{opacity:1;transform:none}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}}
+
+    @media(max-width:900px){
+      .nav-links{
+        position:absolute;top:68px;left:16px;right:16px;background:#fff;border:1px solid var(--line);
+        border-radius:20px;padding:20px;display:none;flex-direction:column;align-items:flex-start;box-shadow:var(--shadow)
       }
-
-      .hero-grid,
-      .info-grid,
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero {
-        padding-top: 64px;
-      }
-
-      .benefit-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .steps {
-        grid-template-columns: 1fr;
-      }
-
-      .cta-box {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .footer-grid {
-        grid-template-columns: 1fr 1fr;
-      }
+      .nav-links.open{display:flex}.menu-btn{display:block}.nav .desktop-cta{display:none}
+      .hero-grid,.schedule-wrap{grid-template-columns:1fr}
+      .consult-card{transform:none}.cards,.steps{grid-template-columns:1fr 1fr}
+      .rule-box{position:static}.footer-grid{grid-template-columns:1fr 1fr}
     }
-
-    @media (max-width: 620px) {
-      .container {
-        width: min(100% - 22px, 1160px);
-      }
-
-      nav .btn {
-        display: none;
-      }
-
-      h1 {
-        letter-spacing: -1.5px;
-      }
-
-      .hero-actions .btn {
-        width: 100%;
-      }
-
-      .benefit-grid,
-      .form-grid,
-      .footer-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .field.full {
-        grid-column: auto;
-      }
-
-      .hero-card,
-      .contact-copy,
-      form,
-      .cta-box {
-        padding: 24px;
-      }
-
-      .car-visual {
-        min-height: 320px;
-      }
-
-      .car {
-        transform: scale(.82);
-      }
-
-      section {
-        padding: 66px 0;
-      }
+    @media(max-width:620px){
+      .section{padding:72px 0}.hero{padding-top:120px}
+      .hero h1{font-size:3.45rem}.cards,.steps,.footer-grid{grid-template-columns:1fr}
+      .day{grid-template-columns:1fr}.day small{text-align:left}
+      .cta{padding:34px 24px}.brand span:last-child{font-size:.92rem}
     }
   </style>
 </head>
 
 <body>
-  <div class="topbar">Atención en Bogotá · Orientación rápida y personalizada</div>
+  <div id="loader"><div class="loader-mark">↗</div></div>
 
-  <header>
-    <div class="container">
-      <nav>
-        <a class="brand" href="#inicio" aria-label="Inicio">
-          <span class="brand-mark">✓</span>
-          <span>Movilidad Solidaria</span>
-        </a>
+  <header class="nav-wrap" id="navbar">
+    <div class="container nav">
+      <a class="brand" href="#inicio" aria-label="Ir al inicio">
+        <span class="brand-icon">↗</span>
+        <span>Movilidad Clara <small>Bogotá</small></span>
+      </a>
 
-        <div class="nav-links">
-          <a href="#beneficios">Beneficios</a>
-          <a href="#proceso">Cómo funciona</a>
-          <a href="#preguntas">Preguntas</a>
-          <a href="#contacto">Contacto</a>
-        </div>
-
-        <a class="btn btn-primary whatsapp-link" href="#" target="_blank" rel="noopener">
-          Solicitar asesoría
-        </a>
+      <nav class="nav-links" id="navLinks">
+        <a href="#servicios">Servicios</a>
+        <a href="#calendario">Calendario</a>
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#preguntas">Preguntas</a>
+        <a href="#contacto">Contacto</a>
       </nav>
+
+      <a class="btn btn-primary desktop-cta" href="#consulta">Consultar placa</a>
+      <button class="menu-btn" id="menuBtn" aria-label="Abrir menú">☰</button>
     </div>
   </header>
 
   <main>
     <section class="hero" id="inicio">
+      <div class="bg-grid"></div>
+      <div class="orb one"></div>
+      <div class="orb two"></div>
+
       <div class="container hero-grid">
-        <div class="reveal">
-          <div class="eyebrow">✓ Atención para conductores en Bogotá</div>
-          <h1>Pico y Placa <span>Solidario</span> sin complicaciones</h1>
-          <p class="hero-copy">
-            Recibe orientación personalizada para gestionar tu solicitud y conocer
-            los pasos necesarios para circular en Bogotá según las condiciones aplicables.
+        <div>
+          <span class="eyebrow">Orientación privada e independiente</span>
+          <h1>Muévete por Bogotá con <span class="gradient-text">más claridad.</span></h1>
+          <p>
+            Te ayudamos a comprender las restricciones de movilidad, revisar el último número de tu placa
+            y planificar tus recorridos antes de salir.
           </p>
 
           <div class="hero-actions">
-            <a class="btn btn-primary whatsapp-link" href="#" target="_blank" rel="noopener">
-              Hablar por WhatsApp
-            </a>
-            <a class="btn btn-secondary" href="#contacto">Solicitar información</a>
+            <a class="btn btn-primary" href="#consulta">Consultar mi placa →</a>
+            <a class="btn btn-light whatsapp-link" href="#" target="_blank" rel="noopener">💬 Hablar por WhatsApp</a>
           </div>
 
           <div class="trust-row">
-            <span>✓ Atención rápida</span>
-            <span>✓ Proceso orientado</span>
-            <span>✓ Soporte personalizado</span>
+            <span><b class="check">✓</b> Información fácil de entender</span>
+            <span><b class="check">✓</b> Atención personalizada</span>
+            <span><b class="check">✓</b> Sitio no gubernamental</span>
           </div>
         </div>
 
-        <div class="hero-card reveal">
-          <div class="car-visual" aria-label="Ilustración de automóvil">
-            <div class="check-badge">✓</div>
-            <div class="car">
-              <span class="wheel left"></span>
-              <span class="wheel right"></span>
-            </div>
-            <div class="mini-note">Bogotá · Atención en línea</div>
+        <div class="consult-card" id="consulta">
+          <span class="live-pill"><i class="live-dot"></i> Consulta orientativa</span>
+          <h2>Revisa el último número de tu placa</h2>
+          <p>Ingresa la placa completa o solamente su último número.</p>
 
-            <div class="city" aria-hidden="true">
-              <span class="building b1"></span>
-              <span class="building b2"></span>
-              <span class="building b3"></span>
-              <span class="building b4"></span>
-              <span class="building b5"></span>
-              <span class="building b6"></span>
+          <div class="field">
+            <label for="plate">Placa del vehículo</label>
+            <div class="plate-input">
+              <input id="plate" maxlength="6" placeholder="ABC123" autocomplete="off" />
+              <button class="btn btn-primary" id="checkPlate">Consultar</button>
             </div>
+          </div>
+
+          <div class="result" id="plateResult" aria-live="polite"></div>
+
+          <div class="official-note">
+            ⚠️ Resultado únicamente orientativo. Antes de viajar, confirma la información en los canales
+            oficiales de la Secretaría Distrital de Movilidad.
           </div>
         </div>
       </div>
     </section>
 
-    <section id="beneficios">
+    <div class="legal-strip">
       <div class="container">
-        <div class="section-head reveal">
-          <span>Servicio especializado</span>
-          <h2>La orientación que necesitas para iniciar tu proceso</h2>
-          <p>
-            Te ayudamos a entender los requisitos, organizar la información y avanzar
-            de forma clara durante la gestión de tu solicitud.
+        <span>ⓘ</span>
+        <strong>Este sitio es privado e independiente. No pertenece ni está afiliado a la Alcaldía de Bogotá ni a la Secretaría Distrital de Movilidad.</strong>
+      </div>
+    </div>
+
+    <section class="section" id="servicios">
+      <div class="container">
+        <div class="reveal">
+          <span class="eyebrow">Nuestros servicios</span>
+          <h2 class="section-title">Orientación para tomar mejores decisiones de movilidad.</h2>
+          <p class="section-copy">Convertimos información compleja en respuestas sencillas para conductores particulares en Bogotá.</p>
+        </div>
+
+        <div class="cards">
+          <article class="card reveal"><div class="card-icon">🚘</div><h3>Consulta personalizada</h3><p>Te orientamos según la fecha y el último número de la placa de tu vehículo.</p></article>
+          <article class="card reveal"><div class="card-icon">🗺️</div><h3>Planeación de recorridos</h3><p>Organiza tus desplazamientos y conoce alternativas antes de iniciar el trayecto.</p></article>
+          <article class="card reveal"><div class="card-icon">📅</div><h3>Calendario fácil</h3><p>Visualiza rápidamente qué placas pueden circular durante los días hábiles.</p></article>
+          <article class="card reveal"><div class="card-icon">⚠️</div><h3>Prevención</h3><p>Reduce el riesgo de salir sin revisar previamente la restricción aplicable.</p></article>
+          <article class="card reveal"><div class="card-icon">💬</div><h3>Atención por WhatsApp</h3><p>Resuelve inquietudes con acompañamiento directo y lenguaje claro.</p></article>
+          <article class="card reveal"><div class="card-icon">🔎</div><h3>Fuentes oficiales</h3><p>Promovemos la validación final de la información en los canales institucionales.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section schedule-section" id="calendario">
+      <div class="container">
+        <div class="reveal">
+          <span class="eyebrow">Calendario orientativo</span>
+          <h2 class="section-title">¿Qué placas pueden circular?</h2>
+          <p class="section-copy">
+            Para vehículos particulares, la regla general se organiza según si el día hábil del calendario es par o impar.
           </p>
         </div>
 
-        <div class="benefit-grid">
-          <article class="card reveal">
-            <div class="icon">⚡</div>
-            <h3>Atención rápida</h3>
-            <p>Recibe respuesta y orientación sin procesos innecesariamente complicados.</p>
-          </article>
+        <div class="schedule-wrap">
+          <aside class="rule-box reveal">
+            <h3>Regla general en Bogotá</h3>
+            <p>Horario habitual para particulares: de lunes a viernes, de 6:00 a. m. a 9:00 p. m., salvo festivos o disposiciones especiales.</p>
 
-          <article class="card reveal">
-            <div class="icon">📄</div>
-            <h3>Asesoría personalizada</h3>
-            <p>Revisamos tu necesidad y te explicamos los pasos correspondientes.</p>
-          </article>
+            <div class="rule-item">
+              <div class="rule-num">1</div>
+              <div><strong>Días impares</strong><br><small>Pueden circular placas terminadas en 1, 2, 3, 4 y 5.</small></div>
+            </div>
+            <div class="rule-item">
+              <div class="rule-num">2</div>
+              <div><strong>Días pares</strong><br><small>Pueden circular placas terminadas en 6, 7, 8, 9 y 0.</small></div>
+            </div>
+            <div class="rule-item">
+              <div class="rule-num">!</div>
+              <div><strong>Verificación necesaria</strong><br><small>Festivos, contingencias y cambios normativos pueden modificar la operación.</small></div>
+            </div>
+          </aside>
 
-          <article class="card reveal">
-            <div class="icon">🔒</div>
-            <h3>Tratamiento responsable</h3>
-            <p>Usamos la información suministrada únicamente para atender tu solicitud.</p>
-          </article>
-
-          <article class="card reveal">
-            <div class="icon">💬</div>
-            <h3>Soporte por WhatsApp</h3>
-            <p>Comunícate fácilmente desde tu celular y resuelve tus principales dudas.</p>
-          </article>
+          <div class="week reveal" id="weekSchedule"></div>
         </div>
       </div>
     </section>
 
-    <section class="steps-section" id="proceso">
+    <section class="section" id="como-funciona">
       <div class="container">
-        <div class="section-head reveal">
-          <span>Proceso sencillo</span>
-          <h2>¿Cómo funciona?</h2>
-          <p>Inicia tu solicitud en tres pasos claros.</p>
+        <div class="reveal">
+          <span class="eyebrow">Proceso sencillo</span>
+          <h2 class="section-title">Consulta, confirma y planifica.</h2>
         </div>
 
         <div class="steps">
-          <article class="step reveal">
-            <div class="step-number">1</div>
-            <h3>Escríbenos</h3>
-            <p>Cuéntanos qué necesitas y comparte los datos básicos de tu vehículo.</p>
-          </article>
-
-          <article class="step reveal">
-            <div class="step-number">2</div>
-            <h3>Revisamos tu caso</h3>
-            <p>Validamos la información suministrada y te indicamos los pasos aplicables.</p>
-          </article>
-
-          <article class="step reveal">
-            <div class="step-number">3</div>
-            <h3>Recibe acompañamiento</h3>
-            <p>Te orientamos durante el proceso para que avances con mayor claridad.</p>
-          </article>
+          <div class="step reveal"><span>01</span><div class="card-icon">🔢</div><h3>Ingresa tu placa</h3><p>Usamos el último dígito para darte una orientación inicial.</p></div>
+          <div class="step reveal"><span>02</span><div class="card-icon">✅</div><h3>Revisa el resultado</h3><p>Conoce si, según la regla general del día, tu grupo de placas puede circular.</p></div>
+          <div class="step reveal"><span>03</span><div class="card-icon">🧭</div><h3>Confirma y viaja</h3><p>Valida en la fuente oficial y organiza tu desplazamiento con anticipación.</p></div>
         </div>
       </div>
     </section>
 
-    <section>
-      <div class="container info-grid">
-        <div class="info-panel reveal">
-          <h3>¿Por qué elegir nuestro acompañamiento?</h3>
-          <p>Un servicio diseñado para conductores que valoran su tiempo y necesitan información clara.</p>
-
-          <ul class="check-list">
-            <li>Atención personalizada</li>
-            <li>Orientación paso a paso</li>
-            <li>Comunicación directa por WhatsApp</li>
-            <li>Información clara sobre el proceso</li>
-            <li>Servicio enfocado en Bogotá</li>
-            <li>Soporte para resolver dudas</li>
-          </ul>
-        </div>
-
-        <div class="content-block reveal">
-          <h2>Muévete por Bogotá con mayor tranquilidad</h2>
-          <p>
-            El Pico y Placa Solidario es una alternativa disponible para propietarios
-            de vehículos que necesitan circular durante periodos sujetos a restricción,
-            siempre que cumplan las condiciones y realicen el procedimiento correspondiente.
-          </p>
-          <p>
-            Nuestro equipo ofrece orientación privada para ayudarte a comprender el proceso.
-            La aprobación, disponibilidad, tarifas y condiciones dependen exclusivamente
-            de las entidades competentes y de la regulación vigente.
-          </p>
-
-          <div class="notice">
-            <strong>Aviso importante:</strong> este sitio presta servicios de orientación privada.
-            No somos una entidad gubernamental ni garantizamos aprobaciones.
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="cta">
+    <section class="section" id="preguntas">
       <div class="container">
-        <div class="cta-box reveal">
-          <div>
-            <h2>¿Necesitas orientación ahora?</h2>
-            <p>Habla con un asesor y recibe información inicial para comenzar tu proceso.</p>
-          </div>
-          <a class="btn btn-secondary whatsapp-link" href="#" target="_blank" rel="noopener">
-            Abrir WhatsApp
-          </a>
+        <div class="reveal" style="text-align:center">
+          <span class="eyebrow">Preguntas frecuentes</span>
+          <h2 class="section-title">Respuestas claras antes de salir.</h2>
+        </div>
+
+        <div class="faq-wrap reveal">
+          <details>
+            <summary>¿Este sitio pertenece a la Secretaría de Movilidad?</summary>
+            <p>No. Somos un servicio privado e independiente de orientación. No representamos a ninguna entidad gubernamental.</p>
+          </details>
+          <details>
+            <summary>¿La consulta reemplaza la información oficial?</summary>
+            <p>No. La consulta es informativa y debe confirmarse en los canales oficiales antes de conducir.</p>
+          </details>
+          <details>
+            <summary>¿Cómo se determina la restricción?</summary>
+            <p>La regla general para particulares utiliza el último dígito de la placa y el número par o impar del día hábil.</p>
+          </details>
+          <details>
+            <summary>¿Qué pasa los días festivos?</summary>
+            <p>La medida urbana habitual puede no aplicar, pero pueden existir restricciones regionales de ingreso. Verifica siempre la programación oficial.</p>
+          </details>
+          <details>
+            <summary>¿Puedo recibir orientación por WhatsApp?</summary>
+            <p>Sí. El botón de WhatsApp puede conectarse con tu número comercial para atender consultas directamente.</p>
+          </details>
         </div>
       </div>
     </section>
 
-    <section class="faq" id="preguntas">
+    <section class="section" id="contacto">
       <div class="container">
-        <div class="section-head reveal">
-          <span>Preguntas frecuentes</span>
-          <h2>Información importante antes de comenzar</h2>
+        <div class="cta reveal">
+          <h2>¿Necesitas orientación antes de salir?</h2>
+          <p>Habla con nuestro equipo y recibe información sencilla para planificar tu movilidad en Bogotá.</p>
+          <a class="btn whatsapp-link" href="#" target="_blank" rel="noopener">💬 Hablar por WhatsApp</a>
         </div>
-
-        <div class="faq-list">
-          <details class="reveal">
-            <summary>¿Qué es el Pico y Placa Solidario?</summary>
-            <p>
-              Es un mecanismo relacionado con la circulación de vehículos sujetos a
-              restricciones en Bogotá, bajo condiciones, requisitos y tarifas definidas
-              por las autoridades competentes.
-            </p>
-          </details>
-
-          <details class="reveal">
-            <summary>¿Quién puede solicitar orientación?</summary>
-            <p>
-              Propietarios o responsables de vehículos que necesiten información sobre
-              el proceso y los requisitos aplicables en Bogotá.
-            </p>
-          </details>
-
-          <details class="reveal">
-            <summary>¿Cuánto tarda el proceso?</summary>
-            <p>
-              Los tiempos pueden variar según la validación de datos, el tipo de solicitud
-              y los procedimientos definidos por las entidades correspondientes.
-            </p>
-          </details>
-
-          <details class="reveal">
-            <summary>¿Ustedes son una entidad oficial?</summary>
-            <p>
-              No. Somos un servicio privado de orientación y acompañamiento. No representamos
-              a la Alcaldía, la Secretaría Distrital de Movilidad ni a ninguna entidad pública.
-            </p>
-          </details>
-
-          <details class="reveal">
-            <summary>¿Cómo inicio?</summary>
-            <p>
-              Completa el formulario o escríbenos por WhatsApp. Un asesor te solicitará
-              la información básica necesaria para orientarte.
-            </p>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <section id="contacto">
-      <div class="container contact-grid">
-        <div class="contact-copy reveal">
-          <span class="eyebrow">Atención personalizada</span>
-          <h2>Solicita información sobre tu caso</h2>
-          <p>
-            Completa tus datos y el sistema preparará un mensaje para enviarlo directamente
-            a nuestro WhatsApp.
-          </p>
-
-          <div class="contact-detail">📍 Atención en Bogotá D.C.</div>
-          <div class="contact-detail">💬 Servicio por WhatsApp</div>
-          <div class="contact-detail">🕒 Lunes a sábado</div>
-        </div>
-
-        <form id="leadForm" class="reveal">
-          <div class="form-grid">
-            <div class="field">
-              <label for="name">Nombre completo</label>
-              <input id="name" name="name" type="text" placeholder="Tu nombre" required />
-            </div>
-
-            <div class="field">
-              <label for="phone">Teléfono</label>
-              <input id="phone" name="phone" type="tel" placeholder="300 000 0000" required />
-            </div>
-
-            <div class="field">
-              <label for="plate">Placa del vehículo</label>
-              <input id="plate" name="plate" type="text" placeholder="ABC123" maxlength="6" required />
-            </div>
-
-            <div class="field">
-              <label for="service">Tipo de orientación</label>
-              <select id="service" name="service" required>
-                <option value="">Selecciona una opción</option>
-                <option>Información general</option>
-                <option>Ayuda con la solicitud</option>
-                <option>Revisión de requisitos</option>
-                <option>Consulta sobre el proceso</option>
-              </select>
-            </div>
-
-            <div class="field full">
-              <label for="message">Mensaje</label>
-              <textarea id="message" name="message" placeholder="Cuéntanos brevemente qué necesitas"></textarea>
-            </div>
-          </div>
-
-          <p class="form-note">
-            Al enviar aceptas ser contactado para responder tu solicitud. No somos una entidad gubernamental.
-          </p>
-
-          <button class="btn btn-primary" type="submit">
-            Enviar solicitud por WhatsApp
-          </button>
-        </form>
       </div>
     </section>
   </main>
@@ -1189,85 +463,125 @@
     <div class="container">
       <div class="footer-grid">
         <div>
-          <a class="brand" href="#inicio">
-            <span class="brand-mark">✓</span>
-            <span style="color:white">Movilidad Solidaria</span>
-          </a>
-          <p style="margin-top:14px; max-width:420px;">
-            Servicio privado de orientación para personas interesadas en conocer
-            el proceso del Pico y Placa Solidario en Bogotá.
-          </p>
+          <div class="brand"><span class="brand-icon">↗</span><span>Movilidad Clara <small>Bogotá</small></span></div>
+          <p style="margin-top:18px;max-width:440px">Servicio privado de información y acompañamiento para conductores. No gestionamos permisos oficiales ni actuamos en nombre del Distrito.</p>
         </div>
-
         <div>
           <h4>Navegación</h4>
-          <div class="footer-links">
-            <a href="#beneficios">Beneficios</a>
-            <a href="#proceso">Cómo funciona</a>
-            <a href="#preguntas">Preguntas frecuentes</a>
-            <a href="#contacto">Contacto</a>
-          </div>
+          <a href="#servicios">Servicios</a><a href="#calendario">Calendario</a><a href="#preguntas">Preguntas</a><a href="#contacto">Contacto</a>
         </div>
-
         <div>
-          <h4>Información legal</h4>
-          <div class="footer-links">
-            <a href="#">Política de privacidad</a>
-            <a href="#">Tratamiento de datos</a>
-            <a href="#">Términos del servicio</a>
-          </div>
+          <h4>Legal</h4>
+          <a href="#">Política de privacidad</a><a href="#">Términos de uso</a><a href="#">Aviso de independencia</a>
         </div>
       </div>
-
-      <p class="legal">
-        © <span id="year"></span> Movilidad Solidaria. Sitio privado e independiente.
-        No afiliado con entidades gubernamentales.
-      </p>
+      <div class="copyright">
+        © <span id="year"></span> Movilidad Clara Bogotá. Información orientativa sujeta a cambios. Verifica siempre en fuentes oficiales.
+      </div>
     </div>
   </footer>
 
-  <a class="whatsapp-float whatsapp-link" href="#" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
-    ☎
-  </a>
+  <a class="whatsapp whatsapp-link" href="#" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">✆</a>
 
   <script>
-    // REEMPLAZA este número por tu WhatsApp, incluyendo indicativo de Colombia 57.
-    // Ejemplo: 573001234567
+    // ==========================================================
+    // CONFIGURACIÓN RÁPIDA
+    // Reemplaza el número con tu WhatsApp en formato internacional:
+    // Colombia: 57 + número, sin espacios ni signos.
+    // ==========================================================
     const WHATSAPP_NUMBER = "573001234567";
-
-    const defaultMessage =
-      "Hola, quiero recibir información sobre el servicio de orientación para Pico y Placa Solidario en Bogotá.";
+    const WHATSAPP_MESSAGE = "Hola, necesito orientación sobre las restricciones de movilidad en Bogotá.";
 
     document.querySelectorAll(".whatsapp-link").forEach(link => {
-      link.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(defaultMessage)}`;
+      link.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
     });
 
-    document.getElementById("leadForm").addEventListener("submit", function(event) {
-      event.preventDefault();
-
-      const name = document.getElementById("name").value.trim();
-      const phone = document.getElementById("phone").value.trim();
-      const plate = document.getElementById("plate").value.trim().toUpperCase();
-      const service = document.getElementById("service").value;
-      const message = document.getElementById("message").value.trim();
-
-      const whatsappMessage =
-`Hola, quiero solicitar orientación sobre Pico y Placa Solidario.
-
-Nombre: ${name}
-Teléfono: ${phone}
-Placa: ${plate}
-Tipo de consulta: ${service}
-Mensaje: ${message || "Sin mensaje adicional"}`;
-
-      window.open(
-        `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappMessage)}`,
-        "_blank"
-      );
+    // Loader
+    window.addEventListener("load", () => {
+      setTimeout(() => document.getElementById("loader").classList.add("hide"), 350);
     });
 
-    document.getElementById("year").textContent = new Date().getFullYear();
+    // Navbar
+    const navbar = document.getElementById("navbar");
+    window.addEventListener("scroll", () => navbar.classList.toggle("scrolled", scrollY > 20));
 
+    // Menú móvil
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+    menuBtn.addEventListener("click", () => navLinks.classList.toggle("open"));
+    navLinks.querySelectorAll("a").forEach(a => a.addEventListener("click", () => navLinks.classList.remove("open")));
+
+    // Calendario de los próximos 5 días hábiles
+    const dayNames = ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"];
+    const monthNames = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+    const weekSchedule = document.getElementById("weekSchedule");
+
+    function allowedDigits(dayNumber) {
+      return dayNumber % 2 === 0 ? [6,7,8,9,0] : [1,2,3,4,5];
+    }
+
+    function buildSchedule() {
+      weekSchedule.innerHTML = "";
+      let date = new Date();
+      let added = 0;
+
+      while (added < 5) {
+        const weekday = date.getDay();
+        if (weekday >= 1 && weekday <= 5) {
+          const digits = allowedDigits(date.getDate());
+          const isToday = date.toDateString() === new Date().toDateString();
+          const row = document.createElement("article");
+          row.className = `day ${isToday ? "today" : ""}`;
+          row.innerHTML = `
+            <div class="day-name">${dayNames[weekday]}</div>
+            <div class="plate-chips">${digits.map(n => `<span class="chip">${n}</span>`).join("")}</div>
+            <small>${date.getDate()} de ${monthNames[date.getMonth()]}</small>
+          `;
+          weekSchedule.appendChild(row);
+          added++;
+        }
+        date.setDate(date.getDate() + 1);
+      }
+    }
+    buildSchedule();
+
+    // Consulta por placa
+    const plateInput = document.getElementById("plate");
+    const plateResult = document.getElementById("plateResult");
+
+    function checkPlate() {
+      const value = plateInput.value.trim().toUpperCase();
+      const match = value.match(/(\d)(?!.*\d)/);
+
+      if (!match) {
+        plateResult.className = "result show";
+        plateResult.innerHTML = "Ingresa una placa válida que termine en número, por ejemplo <strong>ABC123</strong>.";
+        return;
+      }
+
+      const digit = Number(match[1]);
+      const now = new Date();
+      const weekday = now.getDay();
+      const isBusinessDay = weekday >= 1 && weekday <= 5;
+      const allowed = allowedDigits(now.getDate());
+      const canCirculate = allowed.includes(digit);
+
+      plateResult.className = "result show";
+
+      if (!isBusinessDay) {
+        plateResult.innerHTML = `Hoy es <strong>${dayNames[weekday]}</strong>. La medida urbana habitual para particulares no opera los fines de semana. Verifica si existe alguna disposición especial o Pico y Placa Regional.`;
+      } else if (canCirculate) {
+        plateResult.innerHTML = `Según la regla general de hoy, una placa terminada en <strong>${digit}</strong> estaría dentro del grupo que <strong>puede circular</strong>. Confirma la información en la fuente oficial.`;
+      } else {
+        plateResult.innerHTML = `Según la regla general de hoy, una placa terminada en <strong>${digit}</strong> estaría dentro del grupo con <strong>restricción</strong> entre 6:00 a. m. y 9:00 p. m. Confirma antes de salir.`;
+      }
+    }
+
+    document.getElementById("checkPlate").addEventListener("click", checkPlate);
+    plateInput.addEventListener("keydown", e => { if (e.key === "Enter") checkPlate(); });
+    plateInput.addEventListener("input", () => plateInput.value = plateInput.value.replace(/[^a-zA-Z0-9]/g, "").toUpperCase());
+
+    // Scroll reveal
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -1275,9 +589,25 @@ Mensaje: ${message || "Sin mensaje adicional"}`;
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12 });
+    }, { threshold: .13 });
+    document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 
-    document.querySelectorAll(".reveal").forEach(element => observer.observe(element));
+    // Ripple
+    document.querySelectorAll(".btn").forEach(button => {
+      button.addEventListener("click", function(e) {
+        const circle = document.createElement("span");
+        const diameter = Math.max(this.clientWidth, this.clientHeight);
+        const rect = this.getBoundingClientRect();
+        circle.style.width = circle.style.height = `${diameter}px`;
+        circle.style.left = `${e.clientX - rect.left - diameter / 2}px`;
+        circle.style.top = `${e.clientY - rect.top - diameter / 2}px`;
+        circle.className = "ripple";
+        this.querySelector(".ripple")?.remove();
+        this.appendChild(circle);
+      });
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
